@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+env/
+venv/
+.idea/
+.vscode/
+*.log
+valid_models.txt
+check_backend.py
+list_models.py
+list_models_safe.py
+debug_env.py
+error_log.txt
