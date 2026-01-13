@@ -53,6 +53,12 @@ async def chat(prompt: Prompt):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+# Mount static files
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
+
 @app.get("/")
 def read_root():
-    return {"message": "AI Assistant Backend is running (Gemini Powered)"}
+    return FileResponse('frontend/index.html')
