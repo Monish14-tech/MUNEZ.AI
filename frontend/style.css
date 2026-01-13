@@ -212,6 +212,7 @@ main {
 .text-gradient {
     background: linear-gradient(to right, #fff, var(--accent-color));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -366,5 +367,41 @@ textarea:focus {
 
     40% {
         transform: scale(1);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 0;
+    }
+
+    .mode-switcher {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .mode-btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        flex: 1;
+        text-align: center;
+    }
+
+    .welcome-message h1 {
+        font-size: 2rem;
+    }
+
+    .message {
+        max-width: 90%;
+        font-size: 0.9rem;
+        padding: 12px 15px;
     }
 }

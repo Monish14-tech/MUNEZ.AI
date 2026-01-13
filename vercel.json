@@ -1,0 +1,16 @@
+{
+    "rewrites": [
+        {
+            "source": "/chat",
+            "destination": "/backend/main.py"
+        },
+        {
+            "source": "/static/(.*)",
+            "destination": "/backend/main.py"
+        },
+        {
+            "source": "/",
+            "destination": "/backend/main.py"
+        }
+    ]
+}

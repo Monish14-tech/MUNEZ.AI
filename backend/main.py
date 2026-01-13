@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from pathlib import Path
 from pydantic import BaseModel
 import google.generativeai as genai
 import os
@@ -6,6 +7,9 @@ from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+FRONTEND_DIR = BASE_DIR / "frontend"
 
 app = FastAPI()
 
@@ -36,7 +40,7 @@ SYSTEM_PROMPTS = {
     "grammar": "You are a grammar corrector. Correct the grammar of the following text and provide a brief explanation of the changes."
 }
 
-@app.post("/chat")
+@app.post("/api/message")
 async def chat(prompt: Prompt):
     if not os.getenv("GEMINI_API_KEY"):
         raise HTTPException(status_code=500, detail="Gemini API Key not configured")
@@ -57,8 +61,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
 # Mount static files
-app.mount("/static", StaticFiles(directory="frontend"), name="static")
+app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
 
 @app.get("/")
 def read_root():
-    return FileResponse('frontend/index.html')
+    return FileResponse(str(FRONTEND_DIR / "index.html"))

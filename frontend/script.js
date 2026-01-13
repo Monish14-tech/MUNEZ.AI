@@ -92,7 +92,7 @@ async function send() {
     let loadingDiv = addMessage('<span class="dot-pulse"></span><span class="dot-pulse delay-1"></span><span class="dot-pulse delay-2"></span>', "ai-msg loading", loadingId);
 
     try {
-        let res = await fetch("http://127.0.0.1:8000/chat", {
+        let res = await fetch("/api/message", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: msg, mode: currentMode })
@@ -120,7 +120,8 @@ async function send() {
 
     } catch (error) {
         if (document.getElementById(loadingId)) document.getElementById(loadingId).remove();
-        addMessage("Error: " + error.message, "ai-msg error");
+        console.error("Fetch error:", error);
+        addMessage("Error: Failed to fetch. (Is the backend server running?)", "ai-msg error");
     }
 }
 
