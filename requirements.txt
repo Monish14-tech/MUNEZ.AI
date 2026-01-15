@@ -2,3 +2,6 @@ fastapi
 uvicorn
 google-generativeai
 python-dotenv
+groq
+huggingface-hub
+requests
